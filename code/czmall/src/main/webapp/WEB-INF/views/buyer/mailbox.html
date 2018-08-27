@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>创展世贸注册邮箱登陆</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/ziy.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/tbdValidate.js"></script>
+<!-- 
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+ <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
+ 
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+//demo3
+    //获取短信验证码
+    var mesdong=null;
+    var mestime=60;
+    $("#reg_mescode_btn").click(function(){ 
+      var phoneval=$.trim($("#reg_phone").val());
+      if(regconfig[0].rule[0].reg.test(phoneval)){
+        $("#reg_phone_text").hide();        
+      }else{      
+        $("#reg_phone_text").html(regconfig[0].rule[0].text).show();
+        $("#reg_phone").focus();
+        return false
+      };
+      if(regconfig[0].rule[1].reg.test(phoneval)){
+        $("#reg_phone_text").hide();        
+      }else{
+        $("#reg_phone").focus();
+        $("#reg_phone_text").html(regconfig[0].rule[1].text).show();
+        return false
+      };
+      if($(this).attr('able')=="able"){//发送
+        $(this).attr('able',"disable");
+        $(this).css('cursor','not-allowed');
+        $(this).html(mestime+"s");
+        mesdong=setInterval(function(){//倒计时
+          mestime-=1;
+          if(mestime<0){
+            $("#reg_mescode_btn").attr('able',"able");
+            $("#reg_mescode_btn").css('cursor','pointer');
+            $("#reg_mescode_btn").html('获取验证码');
+            mestime=60;
+            clearInterval(mesdong);
+          }else{
+            $("#reg_mescode_btn").html(mestime+"s");      
+          };
+        },1000);
+        //短信发送接口
+        
+      }else{
+        
+      };
+    }); 
+    //注册 
+    var regconfig=[
+        {eleinput:"reg_phone",eletext:"reg_phone_text",rule:[{reg:/^.+$/,text:'邮箱用户不能为空'},{reg:/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/,text:'邮箱格式错误'}]},
+         {eleinput:"reg_password",eletext:"reg_password_text",rule:[{reg:/^.+$/,text:'密码不能为空'},{reg:/^.{6,10}$/,text:'8-20位字符，数字、字母、符号至少包含两种'}]},
+        {eleinput:"reg_passwords",eletext:"reg_passwords_text",rule:[{reg:/^.+$/,text:'确认密码'},{reg:/^.{6,10}$/,text:'两次输入密码不一致'}]},
+        {eleinput:"reg_mescode",eletext:"reg_mescode_text",rule:[{reg:/^.+$/,text:'短信验证码不能为空'},{reg:/^[0-9]{6}$/,text:'输入6位短信验证码'}]}
+      ];
+    tbdValidate(
+      regconfig,
+      {
+        elesubmit:"reg_submit",//提交按钮
+        funsubmit:function(){//验证通过可提交回调  
+          //信息提交接口
+          alert("成功");        
+        },
+        funerr:function(){//不可提交回调
+
+        },
+        funerrlist:function(errlist){
+          $('#'+ errlist[0]).focus();
+        } 
+      }
+    );  
+    //end 
+  });
+</script>
+<!--dengl-->
+<div class="yiny">
+	<div class="beij_center">
+		<div class="dengl_logo">
+		</div>
+	</div>
+</div>
+<div class="login-newbg"  style="background-image: url(images/buyerLogin/banner-bjtp-2.png);height:900px;">
+<div class="czfil_jp">
+  <h2>创展世贸B2B平台</h2>
+</div>
+<div class="beij_center"> 
+	<div class="ger_zhuc_beij">
+		<div class="ger_zhuc_biaot">
+			<ul>
+				<p>欢迎您注册网站会员,如果您已拥有账号,择可在此<a class="ftx-05 ml10" href="#">登录</a></p>
+			</ul>
+		</div>
+    <div class="xiaogg">
+            <img src="images/buyerLogin/logo-cz--2.png">
+        </div>
+		<div class="zhuc_biaod">
+			<div class="reg-items">
+      <div class="regAccInfor clearfix">
+  <div class="content">
+  <div class="register-box">
+    <div class="wrap">
+      <div class="register-box-con">
+        <div class="register-box-cen-form clearfix mar-bottom20">
+          <div class="regLabel">邮 箱 用 户 :</div>
+          <input type="text" class="login-box-cen-form-input w358" placeholder="请输入手机号" id="reg_phone" />
+          <label class="err err-top40" id="reg_phone_text">邮箱错误</label>
+        </div>
+        <div class="register-box-cen-form clearfix mar-bottom20">
+          <input type="text" class="login-box-cen-form-inputs w228" placeholder="短信验证码" id="reg_mescode" />
+          <button class="login-box-cen-form-mes w120 mar-left10" id="reg_mescode_btn" able="able">获取验证码</button>
+          <label class="err err-top40" id="reg_mescode_text">短信验证码错误</label>
+        </div>
+        <div class="regLabel">设 置 密 码 :</div>
+        <<div class="register-box-cen-form clearfix mar-bottom20">
+          <input type="text" class="login-box-cen-form-input w358" placeholder="设置登录密码" id="reg_password" />
+          <label class="err err-top40" id="reg_password_text">密码错误</label>
+        </div>
+         <div class="regLabel">确 认 密 码 :</div>
+        <div class="register-box-cen-form clearfix mar-bottom20">
+          <input type="text" class="login-box-cen-form-input w358" placeholder="设置登录密码" id="reg_passwords" />
+          <label class="err err-top40" id="reg_passwords_text">确认密码</label>
+        </div>
+        <div class="register-box-cen-form clearfix mar-bottom20 mar-top50">
+          <input type="submit" value="注册" class="login-box-cen-form-button w380" id="reg_submit" />
+        </div>
+      </div>
+    </div>          
+  </div>  
+</div>
+
+
+<!-- <div class="jianj_dib jianj_dib_1"> -->
+	<!-- <div class="beia_hao"> -->
+		<!-- <p>京ICP备：14012449号 黔ICP证：B2-20140009号  </p> -->
+		<!-- <p class="gonga_bei">京公网安备：11010602030054号</p>  -->
+	<!-- </div> -->
+<!-- </div> -->
+
+
+
+</body></html>

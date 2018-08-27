@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!--  必须对应dao的包名 -->
+<mapper namespace="com.czsm.dao.buyer.BuyerLoginDao">
+ 
+ 
+	<select id="hasUserByAccont" parameterType="String" resultType="com.czsm.entity.buyer.BuyerUserInfo">
+		SELECT * FROM userinfo WHERE username = #{_parameter}
+	</select>
+	<!-- 用户登录时查询用户名是否已存在 -->
+	<select id="usernameExise" parameterType="String" resultType="String">
+		select username from userinfo where username = #{_parameter}
+	</select>
+	<!-- 根据用户名和密码查询用户 -->
+	<select id="findUserByUsername" parameterType="com.czsm.entity.buyer.BuyerUserInfo" resultType="com.czsm.entity.buyer.BuyerUserInfo" >
+		select * from userinfo where username=#{username} and pwd=#{pwd}
+	</select>
+	<!-- 买家注册查询手机号是否已存在 -->
+	<select id="phoneExise" parameterType="String" resultType="String" >
+		select utel from userinfo where utel=#{_parameter}
+	</select>
+	<!-- 买家注册查询邮箱是否已注册 -->
+	<select id="EmailExise" parameterType="String" resultType="String">
+		select email from userinfo where email=#{_parameter}
+	</select>
+	<!-- 根据手机号码注册买家 -->
+	<insert id="signup" parameterType="com.czsm.entity.buyer.BuyerUserInfo">
+		insert into userinfo(userId,utel,username,pwd,email) values(userinfo_s.nextval,#{uTel},#{username},#{pwd},#{email})
+	</insert>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.czsm.dao.test.TestDao">
+
+
+	<insert id="addTest" parameterType="com.czsm.entity.test.Test">
+		insert into test
+		values(#{id},#{name},#{remark})
+	</insert>
+	<select id="findAllInfo"
+		resultType="com.czsm.entity.buyer.BuyerUserInfo">
+		select * from tests
+	</select>
+
+</mapper>
