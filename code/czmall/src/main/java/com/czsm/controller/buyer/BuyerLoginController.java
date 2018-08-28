@@ -190,9 +190,15 @@ public class BuyerLoginController {
 	 */
 	@RequestMapping("judgeVcode")
 	@ResponseBody
-	public StringMsg judgeVcode(String inputVcode ,HttpSession session) {
+	public StringMsg judgeVcode( BuyerUserInfo info ,HttpSession session) {
 		String msg="";
-		if(session.getAttribute("realVcode").equals(inputVcode)) {  //判断系统生成的验证码与买家输入的验证码是否一致
+		String inputsVcode=info.getInputVcode();  //获取用户输入的验证码
+//		String real=(String)session.getAttribute("realVcode");
+//		System.out.println("------------------------");
+//		System.out.println("这是系统生成的验证码："+real);
+//		System.out.println("这是用户的验证码"+inputsVcode);
+//		System.out.println("------------------------");
+		if(session.getAttribute("realVcode").equals(inputsVcode)) {  //判断系统生成的验证码与买家输入的验证码是否一致
 			 msg=Constants.VCODE_CORRECT;  //验证码正确
 		}else {
 			msg= Constants.VCODE_ERROR;   //验证码输入错误

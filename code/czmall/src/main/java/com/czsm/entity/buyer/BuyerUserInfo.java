@@ -7,6 +7,8 @@ public class BuyerUserInfo {
 	private String uTel;	//联系电话 
 	private String vcode;   //图形验证码
 	private String email;   //邮箱号
+	private String inputVcode; //短信或邮箱验证码
+	
 	
 	private String type;  //注册类型（1,2）1表示用户使用的是手机号码注册。2.表示用户使用的是邮箱注册
 
@@ -64,6 +66,14 @@ public class BuyerUserInfo {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getInputVcode() {
+		return inputVcode;
+	}
+
+	public void setInputVcode(String inputVcode) {
+		this.inputVcode = inputVcode;
 	}
 	
 	

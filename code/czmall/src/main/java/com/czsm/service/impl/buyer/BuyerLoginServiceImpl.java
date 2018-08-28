@@ -66,10 +66,7 @@ public class BuyerLoginServiceImpl implements BuyerLoginService{
 	public String accountExise(BuyerUserInfo info) {
 		String result="";
 		String phone=info.getuTel();  //获取用户输入的手机号码
-		System.out.println("-------------------");
-		System.out.println(info.getEmail());
-		System.out.println(info.getuTel());
-		System.out.println("--------------------");
+		
 		if(phone==null) {  //判断手机号是否为空，为空用户则使用邮箱注册
 			
 			String mail=info.getEmail();  //获取用户输入的邮箱
@@ -80,8 +77,7 @@ public class BuyerLoginServiceImpl implements BuyerLoginService{
 				return Constants.EMAIL_EXISE; //邮箱号已存在
 			}
 		}else {	//用户使用手机号注册
-			System.out.println("++++++++++++++++");
-			//String phone=info.getuTel();  //获取用户输入的手机号码			
+						
 			result=loginDao.phoneExise(phone);   //返回查询的结果
 			if(result==null) {
 				return Constants.CAN_REGISTER;   //可注册
@@ -119,7 +115,7 @@ public class BuyerLoginServiceImpl implements BuyerLoginService{
 	@Override
 	public String emailVcode(String email) {		
 		String num=NumberUtil.getRandomNum(Constants.VCODE_LENGTH);//获取系统生成的邮箱验证码
-		MailUtil.sendMail(email, num);
+		MailUtil.sendMail(email, num);  //向指定邮箱中发送验证码
 		return num;
 	}
 
@@ -129,7 +125,7 @@ public class BuyerLoginServiceImpl implements BuyerLoginService{
 	@Override
 	public String smsVcode(String tel) {
 		String num=NumberUtil.getRandomNum(Constants.VCODE_LENGTH);//获取系统生成的短信验证码
-		SmsUtil.sendSms(tel, num, tel);
+		SmsUtil.sendSms(tel, num, tel);   //向指定手机号发送验证码
 		return num;
 	}
 
