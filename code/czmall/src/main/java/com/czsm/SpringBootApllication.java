@@ -48,12 +48,12 @@ public class SpringBootApllication {
 	}
 
 	/**
-	 * 解决跨域问题 加的过滤器
+	 * 解决跨域后AJAX请求sessionID不一致问题 加的过滤器
 	 * 
 	 * @return
 	 */
 	@Bean
-	public FilterRegistrationBean<CorsFilter> testFilterRegistration() {
+	public FilterRegistrationBean<CorsFilter> CorsFilterRegistration() {
 
 		FilterRegistrationBean<CorsFilter> registration = new FilterRegistrationBean<CorsFilter>();
 		registration.setFilter(new CorsFilter());

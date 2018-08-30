@@ -95,10 +95,14 @@ public class BuyerLoginServiceImpl implements BuyerLoginService{
 		//将用户输入的密码进行MD5加密处理
 		String enPwd=MD5Util.EncoderByMd5(info.getPwd());
 		info.setPwd(enPwd); //将密码进行MD5加密
-		if(info.getuTel()==null) {  //如果用户电话号码为空，将用户名设置为邮箱
+		
+		if(info.getuTel()==null) {  //如果用户电话号码为空，将用户名设置为邮箱			
 			info.setUsername(info.getEmail());
+			info.setuTel("");
+			
 		}else {  //电话号码不为空，用户名为手机号码
 			info.setUsername(info.getuTel());
+			info.setEmail("");
 		}
 		int row = loginDao.signup(info);  //返回影响的行数
 		if(row>0) {   
